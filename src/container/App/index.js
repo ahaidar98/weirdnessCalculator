@@ -3,7 +3,7 @@ import 'regenerator-runtime/runtime';
 	import { Provider } from 'react-redux';
 	import { createStore, applyMiddleware, compose } from 'redux';
 	import { routerReducer, routerMiddleware } from 'react-router-redux';
-	import createHistory from 'history/createHashHistory';
+	import { createBrowserHistory as createHistory } from 'history'
 	import createSagaMiddleware from 'redux-saga';
 	import reduxReset from 'redux-reset';
 
