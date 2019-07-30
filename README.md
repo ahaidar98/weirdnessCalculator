@@ -1,13 +1,14 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Implemented in Boilerplate
+## Implemented in React Boilerplate from https://github.com/ahaidar98/react-boilerplate
 
 * React Redux
 * Sagas
 * Reducers
 * Routes (History)
 * PropTypes
+
 ##
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
