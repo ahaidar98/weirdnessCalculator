@@ -39,7 +39,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <div id="mainContainer">
-	{routes(history)}
+        {routes(history)}
       </div>
     </Provider>
   );
