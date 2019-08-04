@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
 // import files here
+import NewPageReducer from './container/NewPage/reducer';
 
-export default routerReducer => {
+
+export default () => {
   return combineReducers({
-    // reducer name: file import,
+    NewPage: NewPageReducer,
   });
 };

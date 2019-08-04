@@ -1,11 +1,13 @@
-import { fork } from 'redux-saga/effects';
+import { fork, all } from 'redux-saga/effects';
 
-//import file here & file name should be the same as export default file name in that saga file
+//import file here
+import NewPageSaga from './container/NewPage/saga';
 
+// ex in yeild: fork(filename imported)
 function* rootSaga() {
-  yield [
-    //fork(file name),
-  ];
+  yield all([
+    fork(NewPageSaga),
+  ]);
 }
 
 export default rootSaga;
