@@ -1,5 +1,4 @@
 // import constants below
-/* import { } from './constants'; */
 
 /*
 	Example on creating a basic get action.
