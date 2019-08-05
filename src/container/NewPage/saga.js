@@ -2,16 +2,16 @@ import { takeLatest, put } from 'redux-saga/effects';
 
 import { FETCH_GIF_DATA } from './constants';
 import {
-  onGifLoadSuccess,
+  onGifDataLoadSuccess,
   onGifLoadStart,
   onGifLoadDone,
   onGifLoadFailed
 } from './actions';
 
 
-  function* getGifs() {
+  function* getGifs(action) {
     const API_KEY ='278XwgF7eryJH8XEleCyi5gFgM5cFnaL';
-    const SEARCH_PARAM = 'gold';
+    const SEARCH_PARAM = action.searchStr;
     const WEIRD_PARAM = '0';
 		const requestURL = `https://api.giphy.com/v1/gifs/translate?api_key=${API_KEY}&s=${SEARCH_PARAM}&weirdness=${WEIRD_PARAM}`;
 
@@ -21,7 +21,7 @@ import {
 	    const response = yield fetch(requestURL);
 			const jsonData = yield response.json();
 
-	    yield put(onGifLoadSuccess(jsonData));
+	    yield put(onGifDataLoadSuccess(jsonData));
       yield put(onGifLoadDone());
 	  } catch (e) {
       // Unhandled Error Message

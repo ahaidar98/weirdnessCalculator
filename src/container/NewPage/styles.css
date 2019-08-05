@@ -3,6 +3,7 @@
   display: inline-block;
   border-right: 1.5px solid #cbcbcd;
   top: 0 !important;
+  height: 100%;
 }
 
 .gifBtn {
@@ -46,7 +47,7 @@
   padding: 20px;
 }
 
-.likedGifContainerg h5 {
+.likedGifContainer h5 {
   margin-top: 0;
 }
 

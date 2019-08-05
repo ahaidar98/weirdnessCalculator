@@ -7,13 +7,22 @@ import {
   ON_DATA_FECTCH_START
 } from './constants';
 
-export const getGifData = () => {
+export const getGifData = (searchStr, weirdness) => {
   return ({
     type: FETCH_GIF_DATA,
+    searchStr,
+    weirdness
   });
 }
 
 export const onGifLoadSuccess = (data) => {
+  return ({
+    type: ON_DATA_FECTCH_SUCESS,
+    payload: data,
+  });
+};
+
+export const onGifDataLoadSuccess = (data) => {
   return ({
     type: ON_DATA_FECTCH_SUCESS,
     payload: data,

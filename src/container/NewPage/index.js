@@ -10,25 +10,28 @@ import ResultImage from '../../component/ResultImage/index';
 class NewPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
-  }
-
-  componentDidMount() {
-    this.props.getGifData();
+    this.state = {
+      weirdnesLevel: 0,
+    };
   }
 
   onLikeClick = (e) => {
-    console.log('Clicked: ', e);
+    console.log('Clicked like: ', e);
+  }
+
+  onSliderChange = (e) => {
+    console.log('Clicked: ', e.currentTarget.value);
+    this.setState({ weirdnesLevel: e.currentTarget.value});
+    this.props.getGifData(this.state.gifInputValue, this.state.weirdnesLevel);
   }
 
   render() {
-    console.log('Data: ', this.props.gifData.data);
     const imageName = this.props.gifData.data && this.props.gifData.data.title;
     const imageURL = this.props.gifData.data && this.props.gifData.data.images.downsized_large.url;
     const imageWidth = this.props.gifData.data && this.props.gifData.data.images.downsized_large.width;
     const imageHeight = this.props.gifData.data && this.props.gifData.data.images.downsized_large.height;
     const imageId = this.props.gifData.data && this.props.gifData.data.id;
-    console.log('image: ', imageURL);
+
     return(
       <div>
         <div className="pgHeader"><h3>Weirdness Calculator</h3></div>
@@ -45,8 +48,17 @@ class NewPage extends React.Component {
             </p>
             <br />
             <div>
-              <input className="gifInput" placeholder="Search GIFs" />
-              <button className="gifBtn">Search</button>
+              <input
+                onChange={(e) => this.setState({ gifInputValue: e.currentTarget.value })}
+                className="gifInput"
+                placeholder="Search GIFs"
+              />
+              <button
+                onClick={() => this.props.getGifData(this.state.gifInputValue, this.state.weirdnesLevel)}
+                className="gifBtn"
+              >
+                Search
+              </button>
             </div>
           </div>
           <div className="calcResults">
@@ -55,9 +67,11 @@ class NewPage extends React.Component {
               name={imageName}
               url={imageURL}
               key={imageId}
-              onLikeClick={this.onLikeClick()}
+              onLikeClick={this.onLikeClick}
               width={imageWidth}
               height={imageHeight}
+              sliderValue={this.state.weirdnesLevel}
+              onSliderChange={this.onSliderChange}
             />
           </div>
         </div>
