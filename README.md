@@ -1,3 +1,11 @@
+##
+
+## Instructions
+
+1. Git Clone Repo
+1. `npm install`
+1. `npm start` to run the app in the development mode.
+
 ## Implemented in React Boilerplate from https://github.com/ahaidar98/react-boilerplate
 
 * React Redux

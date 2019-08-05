@@ -5,10 +5,14 @@ import './styles.css';
 
 const ResultImage = ({ name, url, onLikeClick, key, width, height, sliderValue, onSliderChange }) => {
   return (
-    <div key={key} className="centerContent">
+    <div id={key} className="centerContent">
       <h5 className="imageTitle">{name}</h5>
       <img src={url} alt={name} width={width} height={height} />
-      <div className="likeBtnWrapper"><button className="gifBtn" onClick={onLikeClick}>Like</button></div>
+      <div className="likeBtnWrapper">
+        <button className="gifBtn" onClick={onLikeClick} name={url}>
+          Like
+        </button>
+      </div>
       <br />
       <input className="slider" type="range" min="0" max="10" value={sliderValue} onChange={onSliderChange} />
       <h6>Weirdness Level: {sliderValue}</h6>

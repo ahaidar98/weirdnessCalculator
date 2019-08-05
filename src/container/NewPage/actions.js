@@ -4,7 +4,9 @@ import {
   ON_DATA_FECTCH_SUCESS,
   ON_DATA_FECTCH_FAILED,
   ON_DATA_FECTCH_DONE,
-  ON_DATA_FECTCH_START
+  ON_DATA_FECTCH_START,
+  DELETE_LIKED_GIF,
+  ADD_LIKED_GIF
 } from './constants';
 
 export const getGifData = (searchStr, weirdness) => {
@@ -45,6 +47,23 @@ export const onGifLoadFailed = (errMsg) => {
   return ({
     type: ON_DATA_FECTCH_FAILED,
     payload: errMsg,
+
+  });
+};
+
+export const onAddLikedGif = (id, name, url, weirdness) => {
+  return ({
+    type: ADD_LIKED_GIF,
+    id,
+    name,
+    url,
+    weirdness
+  });
+};
+export const onDeleteLikedGif = (index) => {
+  return ({
+    type: DELETE_LIKED_GIF,
+    index,
 
   });
 };

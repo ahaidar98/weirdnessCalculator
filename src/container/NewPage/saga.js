@@ -12,7 +12,7 @@ import {
   function* getGifs(action) {
     const API_KEY ='278XwgF7eryJH8XEleCyi5gFgM5cFnaL';
     const SEARCH_PARAM = action.searchStr;
-    const WEIRD_PARAM = '0';
+    const WEIRD_PARAM = action.weirdness;
 		const requestURL = `https://api.giphy.com/v1/gifs/translate?api_key=${API_KEY}&s=${SEARCH_PARAM}&weirdness=${WEIRD_PARAM}`;
 
 	  try {
