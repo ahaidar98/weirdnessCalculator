@@ -1,0 +1,52 @@
+.likedGifTile {
+  display: inline-block;
+  margin: 20px;
+}
+
+.likedGifImg {
+  width: 210px;
+  height: 130px;
+}
+
+.likedGifTile h5 {
+  text-transform: capitalize;
+}
+
+.imgWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.removeBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  border: none;
+  outline: none !important;
+  margin: 5px 3px;
+}
+
+.removeDiv:before {
+  content: '✕';
+}
+
+.removeDiv {
+  border: 1px solid white !important;
+  color: white;
+  background-color: black;
+  text-align: center;
+  border-color: transparent;
+  font-size: medium;
+  border-radius: 50%;
+  outline: none !important;
+  opacity: .7;
+  padding-top: 1px;
+  cursor: pointer;
+  width: 20px !important;
+  height: 19px !important;
+}
+
+.removeDiv:hover {
+  opacity: .9 !important */;
+}

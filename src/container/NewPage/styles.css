@@ -47,7 +47,8 @@
   padding: 20px;
 }
 
-.likedGifContainer h5 {
+.likedGifContainer h4,
+.calcResults h4 {
   margin-top: 0;
 }
 
@@ -62,6 +63,12 @@
   color: #646468;
 }
 
+.nullHeader {
+  text-align: center;
+  color: #646468;
+  margin-top: 30px !important;
+}
+
 .calcDescrip {
   border-bottom: 1.5px solid #cbcbcd;
   padding: 20px;
@@ -72,6 +79,7 @@
   padding: 20px;
 }
 
-.calcResults h5 {
-  margin-top: 0;
+.calcBtnContainer {
+  text-align: center;
+  margin-top: 50px;
 }

@@ -7,8 +7,10 @@ const LikedGifImages = ({ name, url, key, onRemoveGifClick }) => {
   return (
     <div id={key} className="likedGifTile">
       <h5>{name}</h5>
-      <img src={url} alt={name} className="likedGifImg" />
-      <button name={url} onClick={onRemoveGifClick}>remove</button>
+      <div className="imgWrapper">
+        <img src={url} alt={name} className="likedGifImg" />
+        <button className="removeBtn" name={url} onClick={onRemoveGifClick}><div className="removeDiv" /></button>
+      </div>
     </div>
   );
 };
