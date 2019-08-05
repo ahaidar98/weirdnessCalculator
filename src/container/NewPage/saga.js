@@ -20,7 +20,7 @@ import {
 
 	    const response = yield fetch(requestURL);
 			const jsonData = yield response.json();
-      console.log('Data: ', jsonData);
+
 	    yield put(onGifLoadSuccess(jsonData));
       yield put(onGifLoadDone());
 	  } catch (e) {

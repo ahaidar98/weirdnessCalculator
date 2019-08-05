@@ -5,6 +5,40 @@
   top: 0 !important;
 }
 
+.gifBtn {
+  background-color: #33cc33;
+  color: white;
+  border-color: transparent;
+  outline: none !important;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  padding: 5px 15px;
+  margin-bottom: 2px;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow;
+}
+
+.gifBtn:hover {
+  color: #33cc33;
+  background-color: white;
+  border-color: #33cc33 !important;
+}
+
+.gifInput {
+  border: 1px solid rgb(223,223,224);
+  border-right: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  padding: 5px 15px;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow;
+}
+
 .likedGifContainer {
   vertical-align: top;
   width: 40%;
@@ -12,7 +46,7 @@
   padding: 20px;
 }
 
-.likedGifContainer h5 {
+.likedGifContainerg h5 {
   margin-top: 0;
 }
 

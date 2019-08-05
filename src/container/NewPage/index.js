@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 import { getGifData } from './actions';
+import ResultImage from '../../component/ResultImage/index';
 
 class NewPage extends React.Component {
   constructor(props) {
@@ -16,7 +17,18 @@ class NewPage extends React.Component {
     this.props.getGifData();
   }
 
+  onLikeClick = (e) => {
+    console.log('Clicked: ', e);
+  }
+
   render() {
+    console.log('Data: ', this.props.gifData.data);
+    const imageName = this.props.gifData.data && this.props.gifData.data.title;
+    const imageURL = this.props.gifData.data && this.props.gifData.data.images.downsized_large.url;
+    const imageWidth = this.props.gifData.data && this.props.gifData.data.images.downsized_large.width;
+    const imageHeight = this.props.gifData.data && this.props.gifData.data.images.downsized_large.height;
+    const imageId = this.props.gifData.data && this.props.gifData.data.id;
+    console.log('image: ', imageURL);
     return(
       <div>
         <div className="pgHeader"><h3>Weirdness Calculator</h3></div>
@@ -33,11 +45,21 @@ class NewPage extends React.Component {
             </p>
             <br />
             <div>
-              <input placeholder="Search GIFs" />
-              <button>Search</button>
+              <input className="gifInput" placeholder="Search GIFs" />
+              <button className="gifBtn">Search</button>
             </div>
           </div>
-          <div className="calcResults"><h5>YOUR RESULTS</h5></div>
+          <div className="calcResults">
+            <h5>YOUR RESULTS</h5>
+            <ResultImage
+              name={imageName}
+              url={imageURL}
+              key={imageId}
+              onLikeClick={this.onLikeClick()}
+              width={imageWidth}
+              height={imageHeight}
+            />
+          </div>
         </div>
         <div className="likedGifContainer"><h5>YOUR LIKED GIFS</h5></div>
       </div>

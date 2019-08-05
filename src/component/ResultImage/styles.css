@@ -1,0 +1,11 @@
+.centerContent {
+  text-align: center;
+}
+
+.imageTitle {
+  text-transform: capitalize;
+}
+
+.likeBtnWrapper {
+  margin: 15px 0;
+}
