@@ -31,13 +31,15 @@ class ResultsPage extends React.Component {
   }
 
   render() {
+    const btnText = this.props.likedGifs.length > 0 ? 'START OVER' : 'START WEIRDNESS CALCULATION'
+    const resultHeader = this.props.likedGifs.length > 0 ? `You scored an ${this.averageWeirdness()} out of 10 on the weirdness scale!` : 'You haven\'t liked any GIFs yet. Click on "START WEIRDNESS CALCULATION" to get started.';
     return(
       <div>
         <div className="pgHeader"><h3>Weirdness Calculator</h3></div>
-        <h4 className="resultPgResults">You scored an {this.averageWeirdness()} out of 10 on the weirdness scale!</h4>
-        <h5 className="resultPgHeader">The GIFs you liked</h5>
+        <h4 className="resultPgResults">{resultHeader}</h4>
+        {this.props.likedGifs.length > 0 ? <h5 className="resultPgHeader">The GIFs you liked</h5> : null}
         {this.likedGifs()}
-        <div className="soLink"><Link onClick={this.props.onStartOver} to="/" className="gifBtn">START OVER</Link></div>
+        <div className="soLink"><Link onClick={this.props.onStartOver} to="/" className="gifBtn">{btnText}</Link></div>
       </div>
     );
   }

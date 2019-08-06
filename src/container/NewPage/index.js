@@ -33,11 +33,13 @@ class NewPage extends React.Component {
   onGifInputSearch = (e) => {
     e.preventDefault();
     const findSameTerm = this.props.likedGifs.map((x) => { return x.searchTerm; }).indexOf(this.state.gifInputValue);
-    if(findSameTerm) {
+    const findSameTermWSpace = this.props.likedGifs.map((x) => { return `${x.searchTerm} `; }).indexOf(this.state.gifInputValue);
+    if(findSameTerm && findSameTermWSpace) {
       this.setState({ showResultImage: true, searchError: '' });
       this.props.getGifData(this.state.gifInputValue, this.state.weirdnesLevel);
     } else {
-      this.setState({ searchError: 'You\'ve already used that term. Please search another term.' });
+      this.setState({ searchError: 'You\'ve already used that term. Please search another term.', showResultImage: false });
+      this.props.onClearGifData();
     }
   }
 
@@ -60,6 +62,8 @@ class NewPage extends React.Component {
       return (<h4 className="imgMsg">Hooray, you've selected 5 GIFs! Press the <i>Calculate My Weirdness Score</i> to continue the weirdness process</h4>);
     } else if (!this.state.gifInputValue && this.props.likedGifs.length > 0) {
       return (<h4 className="imgMsg">GIF added! Search for another GIF.</h4>);
+    }  else if (this.state.searchError) {
+        return (<h4 className="imgMsg">Enter a search term in the input box above to continue the weirdness process</h4>)
     } return null
   }
 

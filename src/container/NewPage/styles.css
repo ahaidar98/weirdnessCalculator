@@ -58,6 +58,15 @@
   transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow;
 }
 
+.gifInput:focus,
+.gifInput:focus {
+    outline: none;
+}
+
+ .gifInput *:focus {
+  outline: none;
+}
+
 .likedGifContainer {
   vertical-align: top;
   width: 40%;
