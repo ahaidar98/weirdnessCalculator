@@ -20,7 +20,7 @@ class NewPage extends React.Component {
 
   onLikeClick = (e) => {
     this.props.onAddLikedGif(this.props.gifData.data.id, this.props.gifData.data.title, this.props.gifData.data.images.fixed_height_small.url, this.state.weirdnesLevel);
-    // this.props.onClearGifData(this.props.gifData.data.id);
+    this.props.onClearGifData();
   }
 
   onRemoveLikedGif = (e) => {

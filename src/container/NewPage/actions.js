@@ -7,7 +7,8 @@ import {
   ON_DATA_FECTCH_START,
   DELETE_LIKED_GIF,
   ADD_LIKED_GIF,
-  CLEAR_GIF_DATA
+  CLEAR_GIF_DATA,
+  ON_START_OVER
 } from './constants';
 
 export const getGifData = (searchStr, weirdness) => {
@@ -69,9 +70,14 @@ export const onDeleteLikedGif = (index) => {
   });
 };
 
-export const onClearGifData = (id) => {
+export const onClearGifData = () => {
   return ({
     type: CLEAR_GIF_DATA,
-    id
+  });
+};
+
+export const onStartOver = () => {
+  return ({
+    type: ON_START_OVER,
   });
 };

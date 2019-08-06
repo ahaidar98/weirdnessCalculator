@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 
 import './styles.css';
 import LikedGifImages from '../../component/LikedGifImages/index';
+// New Page's actions
+import { onStartOver } from '../NewPage/actions';
 
 class ResultsPage extends React.Component {
   constructor(props) {
@@ -35,7 +37,7 @@ class ResultsPage extends React.Component {
         <h4 className="resultPgResults">You scored an {this.averageWeirdness()} out of 10 on the weirdness scale!</h4>
         <h5 className="resultPgHeader">The GIFs you liked</h5>
         {this.likedGifs()}
-        <div className="soLink"><Link to="/" className="gifBtn">START OVER</Link></div>
+        <div className="soLink"><Link onClick={this.props.onStartOver} to="/" className="gifBtn">START OVER</Link></div>
       </div>
     );
   }
@@ -57,6 +59,6 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ }, dispatch);
+  return bindActionCreators({ onStartOver }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ResultsPage);
