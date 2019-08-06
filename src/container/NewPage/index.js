@@ -47,7 +47,7 @@ class NewPage extends React.Component {
     const imageURL = this.props.gifData.data && this.props.gifData.data.images.fixed_width.url;
     const imageId = this.props.gifData.data && this.props.gifData.data.id;
     const isLinkDisabled = this.props.likedGifs.length !== 5 ? 'disabledLink' : null;
-    const isBtnDisabled = !this.state.gifInputValue ? 'disabledLink' : null;
+    const isBtnDisabled = !this.state.gifInputValue || this.props.likedGifs.length === 5 ? 'disabledLink' : null;
     return(
       <div>
         <div className="pgHeader"><h3>Weirdness Calculator</h3></div>
