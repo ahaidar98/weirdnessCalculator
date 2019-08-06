@@ -53,13 +53,14 @@ export const onGifLoadFailed = (errMsg) => {
   });
 };
 
-export const onAddLikedGif = (id, name, url, weirdness) => {
+export const onAddLikedGif = (id, name, url, weirdness, searchTerm) => {
   return ({
     type: ADD_LIKED_GIF,
     id,
     name,
     url,
-    weirdness
+    weirdness,
+    searchTerm
   });
 };
 export const onDeleteLikedGif = (index) => {

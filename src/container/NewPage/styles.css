@@ -18,6 +18,11 @@
   display: none;
 }
 
+.error {
+  color: red;
+  margin-top: 0;
+}
+
 .gifBtn {
   text-decoration: none;
   background-color: #33cc33;

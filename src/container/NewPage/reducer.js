@@ -31,8 +31,7 @@ export default (state = initialState, action) => {
       return { ...state, gifStatus: 'Failed', gifErrorMessage: [...action.payload] };
 
     case ADD_LIKED_GIF:
-      const obj = Object.assign({}, state.likedGifs, { id: action.id, url: action.url, name: action.name, weirdness: action.weirdness });
-
+      const obj = Object.assign({}, state.likedGifs, { id: action.id, url: action.url, name: action.name, weirdness: action.weirdness, searchTerm: action.searchTerm });
       return { ...state, likedGifs: [...state.likedGifs, obj] };
 
     case DELETE_LIKED_GIF:

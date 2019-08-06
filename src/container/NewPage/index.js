@@ -19,21 +19,31 @@ class NewPage extends React.Component {
     this.onSliderChange = this.onSliderChange.bind(this);
   }
 
+  async onSliderChange(e) {
+    await this.setState({ weirdnesLevel: e.currentTarget.value });
+    this.props.getGifData(this.state.gifInputValue, this.state.weirdnesLevel);
+  }
+
   onLikeClick = (e) => {
-    this.props.onAddLikedGif(this.props.gifData.data.id, this.props.gifData.data.title, this.props.gifData.data.images.fixed_height_small.url, this.state.weirdnesLevel);
+    this.props.onAddLikedGif(this.props.gifData.data.id, this.props.gifData.data.title, this.props.gifData.data.images.fixed_height_small.url, this.state.weirdnesLevel, this.state.gifInputValue);
     this.props.onClearGifData();
     this.setState({ gifInputValue: '', showResultImage: false, weirdnesLevel: 0 });
   }
 
-  onRemoveLikedGif = (e) => {
-    const arrIndex = this.props.likedGifs.map((x) => { return x.url; }).indexOf(e.currentTarget.name);
-
-    this.props.onDeleteLikedGif(arrIndex)
+  onGifInputSearch = (e) => {
+    e.preventDefault();
+    const findSameTerm = this.props.likedGifs.map((x) => { return x.searchTerm; }).indexOf(this.state.gifInputValue);
+    if(findSameTerm) {
+      this.setState({ showResultImage: true, searchError: '' });
+      this.props.getGifData(this.state.gifInputValue, this.state.weirdnesLevel);
+    } else {
+      this.setState({ searchError: 'You\'ve already used that term. Please search another term.' });
+    }
   }
 
-  async onSliderChange(e) {
-    await this.setState({ weirdnesLevel: e.currentTarget.value });
-    this.props.getGifData(this.state.gifInputValue, this.state.weirdnesLevel);
+  onRemoveLikedGif = (e) => {
+    const arrIndex = this.props.likedGifs.map((x) => { return x.url; }).indexOf(e.currentTarget.name);
+    this.props.onDeleteLikedGif(arrIndex)
   }
 
   likedGifImages = () => {
@@ -75,6 +85,7 @@ class NewPage extends React.Component {
             </p>
             <br />
             <form>
+              {this.state.searchError ? <h5 className="error">{this.state.searchError}</h5>: null}
               <input
                 value={this.state.gifInputValue}
                 onChange={(e) => this.setState({ gifInputValue: e.currentTarget.value })}
@@ -83,7 +94,7 @@ class NewPage extends React.Component {
               />
               <button
                 type="submit"
-                onClick={(e) => {e.preventDefault(); this.setState({ showResultImage: true }); this.props.getGifData(this.state.gifInputValue, this.state.weirdnesLevel)}}
+                onClick={(e) => this.onGifInputSearch(e)}
                 className={`${isBtnDisabled} gifBtn`}
               >
                 Search
