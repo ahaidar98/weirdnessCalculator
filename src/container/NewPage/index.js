@@ -14,6 +14,7 @@ class NewPage extends React.Component {
     super(props);
     this.state = {
       weirdnesLevel: 0,
+      showResultImage: false
     };
     this.onSliderChange = this.onSliderChange.bind(this);
   }
@@ -21,7 +22,7 @@ class NewPage extends React.Component {
   onLikeClick = (e) => {
     this.props.onAddLikedGif(this.props.gifData.data.id, this.props.gifData.data.title, this.props.gifData.data.images.fixed_height_small.url, this.state.weirdnesLevel);
     this.props.onClearGifData();
-    this.setState({ gifInputValue: '' });
+    this.setState({ gifInputValue: '', showResultImage: false, weirdnesLevel: 0 });
   }
 
   onRemoveLikedGif = (e) => {
@@ -42,11 +43,21 @@ class NewPage extends React.Component {
     })
   }
 
+  resultImgMsg = () => {
+    if (this.props.likedGifs.length === 0) {
+      return (<h4 className="imgMsg">Enter a search term in the input box above to start the weirdness process</h4>);
+    } else if (this.props.likedGifs.length === 5) {
+      return (<h4 className="imgMsg">Hooray, you've selected 5 GIFs! Press the <i>Calculate My Weirdness Score</i> to continue the weirdness process</h4>);
+    } else if (!this.state.gifInputValue && this.props.likedGifs.length > 0) {
+      return (<h4 className="imgMsg">GIF added! Search for another GIF.</h4>);
+    } return null
+  }
+
   render() {
     const imageName = this.props.gifData.data &&  this.props.gifData.data.title;
     const imageURL = this.props.gifData.data && this.props.gifData.data.images.fixed_width.url;
     const imageId = this.props.gifData.data && this.props.gifData.data.id;
-    const isLinkDisabled = this.props.likedGifs.length !== 5 ? 'disabledLink' : null;
+    const isLinkDisabled = this.props.likedGifs.length !== 5 ? 'noBtn' : null;
     const isBtnDisabled = !this.state.gifInputValue || this.props.likedGifs.length === 5 ? 'disabledLink' : null;
     return(
       <div>
@@ -66,7 +77,7 @@ class NewPage extends React.Component {
             <form>
               <input
                 value={this.state.gifInputValue}
-                onChange={(e) => e.currentTarget.value === '' ? this.setState({ gifInputValue: e.currentTarget.value, showResultImage: false }) : this.setState({ gifInputValue: e.currentTarget.value })}
+                onChange={(e) => this.setState({ gifInputValue: e.currentTarget.value })}
                 className="gifInput"
                 placeholder="Search GIFs"
               />
@@ -81,19 +92,21 @@ class NewPage extends React.Component {
           </div>
           <div className="calcResults">
             <h4>YOUR RESULTS</h4>
-              <ResultImage
-                name={imageName}
-                url={imageURL}
-                key={imageId}
-                onLikeClick={this.onLikeClick}
-                sliderValue={this.state.weirdnesLevel}
-                onSliderChange={this.onSliderChange}
-              />
+            <ResultImage
+              name={imageName}
+              url={imageURL}
+              key={imageId}
+              onLikeClick={this.onLikeClick}
+              sliderValue={this.state.weirdnesLevel}
+              onSliderChange={this.onSliderChange}
+              hideResults={!this.state.showResultImage}
+            />
+            {!this.state.showResultImage ? this.resultImgMsg() : null}
           </div>
         </div>
         <div className="likedGifContainer">
           <h4>YOUR LIKED GIFS</h4>
-          <h4 className="nullHeader">You must <i>like</i> {5 - this.props.likedGifs.length} more GIF to start the weirdness process.</h4>
+          <h4 className="nullHeader">You must <i>like</i> {5 - this.props.likedGifs.length} more GIF to start the weirdness calculation.</h4>
           {this.props.likedGifs.length > 0 ? this.likedGifImages() : null}
           <div className="calcBtnContainer">
             <Link to="/results" className={`${isLinkDisabled} gifBtn`}>Calculate My Weirdness Score</Link>
