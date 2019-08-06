@@ -21,6 +21,7 @@ class NewPage extends React.Component {
   onLikeClick = (e) => {
     this.props.onAddLikedGif(this.props.gifData.data.id, this.props.gifData.data.title, this.props.gifData.data.images.fixed_height_small.url, this.state.weirdnesLevel);
     this.props.onClearGifData();
+    this.setState({ gifInputValue: '' });
   }
 
   onRemoveLikedGif = (e) => {
@@ -45,7 +46,8 @@ class NewPage extends React.Component {
     const imageName = this.props.gifData.data &&  this.props.gifData.data.title;
     const imageURL = this.props.gifData.data && this.props.gifData.data.images.fixed_width.url;
     const imageId = this.props.gifData.data && this.props.gifData.data.id;
-
+    const isLinkDisabled = this.props.likedGifs.length !== 5 ? 'disabledLink' : null;
+    const isBtnDisabled = !this.state.gifInputValue ? 'disabledLink' : null;
     return(
       <div>
         <div className="pgHeader"><h3>Weirdness Calculator</h3></div>
@@ -71,7 +73,7 @@ class NewPage extends React.Component {
               <button
                 type="submit"
                 onClick={(e) => {e.preventDefault(); this.setState({ showResultImage: true }); this.props.getGifData(this.state.gifInputValue, this.state.weirdnesLevel)}}
-                className="gifBtn"
+                className={`${isBtnDisabled} gifBtn`}
               >
                 Search
               </button>
@@ -94,7 +96,7 @@ class NewPage extends React.Component {
           <h4 className="nullHeader">You must <i>like</i> {5 - this.props.likedGifs.length} more GIF to start the weirdness process.</h4>
           {this.props.likedGifs.length > 0 ? this.likedGifImages() : null}
           <div className="calcBtnContainer">
-            <Link to="/results" className="gifBtn">Calculate My Weirdness Score</Link>
+            <Link to="/results" className={`${isLinkDisabled} gifBtn`}>Calculate My Weirdness Score</Link>
           </div>
         </div>
       </div>

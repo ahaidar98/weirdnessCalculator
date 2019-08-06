@@ -6,6 +6,14 @@
   height: 100%;
 }
 
+.disabledLink,
+.disabledLink:hover {
+  pointer-events: none;
+  color: #646468 !important;
+  border-color: #646468 !important;
+  background-color: #cbcbcd !important;
+}
+
 .gifBtn {
   text-decoration: none;
   background-color: #33cc33;
