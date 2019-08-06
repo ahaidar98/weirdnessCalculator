@@ -6,3 +6,4 @@ export const ON_DATA_FECTCH_FAILED = 'weirdnessCalculator/NewPage/ON_DATA_FECTCH
 export const ON_DATA_FECTCH_DONE = 'weirdnessCalculator/NewPage/ON_DATA_FECTCH_DONE';
 export const DELETE_LIKED_GIF = 'weirdnessCalculator/NewPage/DELETE_LIKED_GIF';
 export const ADD_LIKED_GIF = 'weirdnessCalculator/NewPage/ADD_LIKED_GIF';
+export const CLEAR_GIF_DATA = 'weirdnessCalculator/NewPage/CLEAR_GIF_DATA';

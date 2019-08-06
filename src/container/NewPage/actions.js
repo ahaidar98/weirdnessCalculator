@@ -6,7 +6,8 @@ import {
   ON_DATA_FECTCH_DONE,
   ON_DATA_FECTCH_START,
   DELETE_LIKED_GIF,
-  ADD_LIKED_GIF
+  ADD_LIKED_GIF,
+  CLEAR_GIF_DATA
 } from './constants';
 
 export const getGifData = (searchStr, weirdness) => {
@@ -65,5 +66,12 @@ export const onDeleteLikedGif = (index) => {
     type: DELETE_LIKED_GIF,
     index,
 
+  });
+};
+
+export const onClearGifData = (id) => {
+  return ({
+    type: CLEAR_GIF_DATA,
+    id
   });
 };

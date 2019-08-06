@@ -8,6 +8,10 @@
   height: 130px;
 }
 
+.text-align {
+  text-align: center;
+}
+
 .likedGifTile h5 {
   text-transform: capitalize;
 }

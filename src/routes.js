@@ -3,6 +3,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 
 //import files here
 import NewPage from './container/NewPage/index';
+import ResultsPage from './container/ResultsPage/index';
 
 const Routes = history => {
   return (
@@ -13,6 +14,11 @@ const Routes = history => {
             exact
             path="/"
             component={NewPage}
+          />
+          <Route
+            exact
+            path="/results"
+            component={ResultsPage}
           />
         </Switch>
       </div>

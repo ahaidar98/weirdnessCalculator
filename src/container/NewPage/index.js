@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom'
 
 import './styles.css';
-import { getGifData, onAddLikedGif, onDeleteLikedGif } from './actions';
+import { getGifData, onAddLikedGif, onDeleteLikedGif, onClearGifData } from './actions';
 import ResultImage from '../../component/ResultImage/index';
 import LikedGifImages from '../../component/LikedGifImages/index';
 
@@ -13,14 +14,13 @@ class NewPage extends React.Component {
     super(props);
     this.state = {
       weirdnesLevel: 0,
-      numLikedGifs: 0,
     };
     this.onSliderChange = this.onSliderChange.bind(this);
   }
 
   onLikeClick = (e) => {
-    this.setState({ numLikedGifs: (this.state.numLikedGifs + 1) });
     this.props.onAddLikedGif(this.props.gifData.data.id, this.props.gifData.data.title, this.props.gifData.data.images.fixed_height_small.url, this.state.weirdnesLevel);
+    // this.props.onClearGifData(this.props.gifData.data.id);
   }
 
   onRemoveLikedGif = (e) => {
@@ -42,10 +42,8 @@ class NewPage extends React.Component {
   }
 
   render() {
-    const imageName = this.props.gifData.data && this.props.gifData.data.title;
+    const imageName = this.props.gifData.data &&  this.props.gifData.data.title;
     const imageURL = this.props.gifData.data && this.props.gifData.data.images.fixed_width.url;
-    const imageWidth = this.props.gifData.data && this.props.gifData.data.images.fixed_width.width;
-    const imageHeight = this.props.gifData.data && this.props.gifData.data.images.fixed_width.height;
     const imageId = this.props.gifData.data && this.props.gifData.data.id;
 
     return(
@@ -60,11 +58,12 @@ class NewPage extends React.Component {
             </p>
             <p>
               When you find a GIF you like, press the <i>Like</i> button. Once you
-              like 5 GIFs, we'll show you how weird you are.
+              like 5 GIFs, we'll show you how weird you are. You can only like one GIF per search term.
             </p>
             <br />
             <form>
               <input
+                value={this.state.gifInputValue}
                 onChange={(e) => e.currentTarget.value === '' ? this.setState({ gifInputValue: e.currentTarget.value, showResultImage: false }) : this.setState({ gifInputValue: e.currentTarget.value })}
                 className="gifInput"
                 placeholder="Search GIFs"
@@ -85,8 +84,6 @@ class NewPage extends React.Component {
                 url={imageURL}
                 key={imageId}
                 onLikeClick={this.onLikeClick}
-                width={imageWidth}
-                height={imageHeight}
                 sliderValue={this.state.weirdnesLevel}
                 onSliderChange={this.onSliderChange}
               />
@@ -97,7 +94,7 @@ class NewPage extends React.Component {
           <h4 className="nullHeader">You must <i>like</i> {5 - this.props.likedGifs.length} more GIF to start the weirdness process.</h4>
           {this.props.likedGifs.length > 0 ? this.likedGifImages() : null}
           <div className="calcBtnContainer">
-            <button type="button" disabled={this.props.likedGifs.length !== 5} className="gifBtn">Calculate My Weirdness Score</button>
+            <Link to="/results" className="gifBtn">Calculate My Weirdness Score</Link>
           </div>
         </div>
       </div>
@@ -128,6 +125,6 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getGifData, onAddLikedGif, onDeleteLikedGif }, dispatch);
+  return bindActionCreators({ getGifData, onAddLikedGif, onDeleteLikedGif, onClearGifData }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NewPage);
