@@ -6,12 +6,13 @@ import {
   DELETE_LIKED_GIF,
   ADD_LIKED_GIF,
   CLEAR_GIF_DATA,
-  ON_START_OVER
+  ON_START_OVER,
+  ON_DATA_FECTCH_NO_RESULTS,
 } from './constants';
 
 const initialState = {
 	gifData: {},
-	gifStatus: '',
+	gifStatus: 'No Results',
 	gifErrorMessage: [],
   likedGifs: [],
 };
@@ -26,6 +27,9 @@ export default (state = initialState, action) => {
 
     case ON_DATA_FECTCH_DONE:
       return { ...state, gifStatus: 'Done' };
+
+    case ON_DATA_FECTCH_NO_RESULTS:
+      return { ...state, gifStatus: 'No Results' };
 
     case ON_DATA_FECTCH_FAILED:
       return { ...state, gifStatus: 'Failed', gifErrorMessage: [...action.payload] };

@@ -5,7 +5,8 @@ import {
   onGifDataLoadSuccess,
   onGifLoadStart,
   onGifLoadDone,
-  onGifLoadFailed
+  onGifLoadFailed,
+  onGifLoadNoResults
 } from './actions';
 
 
@@ -20,9 +21,13 @@ import {
 
 	    const response = yield fetch(requestURL);
 			const jsonData = yield response.json();
+      if(jsonData.data.length === 0) {
+        yield put(onGifLoadNoResults());
+      } else {
+        yield put(onGifDataLoadSuccess(jsonData));
+        yield put(onGifLoadDone());
+      }
 
-	    yield put(onGifDataLoadSuccess(jsonData));
-      yield put(onGifLoadDone());
 	  } catch (e) {
       // Unhandled Error Message
       const errorsObj = (e.response && e.response.data) ? e.response.data : {};

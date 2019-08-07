@@ -6,6 +6,10 @@
   height: 100%;
 }
 
+.pgContianer {
+  height: 100%;
+}
+
 .disabledLink,
 .disabledLink:hover {
   pointer-events: none;
@@ -104,6 +108,7 @@
 
 .calcDescrip {
   border-bottom: 1.5px solid #cbcbcd;
+  border-right: 1px solid #cbcbcd;
   padding: 20px;
   background-color: white;
 }

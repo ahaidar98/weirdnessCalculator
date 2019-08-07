@@ -8,7 +8,8 @@ import {
   DELETE_LIKED_GIF,
   ADD_LIKED_GIF,
   CLEAR_GIF_DATA,
-  ON_START_OVER
+  ON_START_OVER,
+  ON_DATA_FECTCH_NO_RESULTS
 } from './constants';
 
 export const getGifData = (searchStr, weirdness) => {
@@ -42,6 +43,12 @@ export const onGifLoadStart = () => {
 export const onGifLoadDone = () => {
   return ({
     type: ON_DATA_FECTCH_DONE,
+  });
+};
+
+export const onGifLoadNoResults = () => {
+  return ({
+    type: ON_DATA_FECTCH_NO_RESULTS,
   });
 };
 

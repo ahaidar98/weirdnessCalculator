@@ -14,9 +14,15 @@ class NewPage extends React.Component {
     super(props);
     this.state = {
       weirdnesLevel: 0,
-      showResultImage: false
+      gifInputValue: ''
     };
     this.onSliderChange = this.onSliderChange.bind(this);
+  }
+
+  componentWillReceiveProps() {
+    if(this.props.gifStatus === 'Loading') {
+      this.setState({ madeSearch: true });
+    }
   }
 
   async onSliderChange(e) {
@@ -27,25 +33,29 @@ class NewPage extends React.Component {
   onLikeClick = (e) => {
     this.props.onAddLikedGif(this.props.gifData.data.id, this.props.gifData.data.title, this.props.gifData.data.images.fixed_height_small.url, this.state.weirdnesLevel, this.state.gifInputValue);
     this.props.onClearGifData();
-    this.setState({ gifInputValue: '', showResultImage: false, weirdnesLevel: 0 });
+    this.setState({ gifInputValue: '', weirdnesLevel: 0 });
   }
 
   onGifInputSearch = (e) => {
     e.preventDefault();
     const findSameTerm = this.props.likedGifs.map((x) => { return x.searchTerm; }).indexOf(this.state.gifInputValue);
     const findSameTermWSpace = this.props.likedGifs.map((x) => { return `${x.searchTerm} `; }).indexOf(this.state.gifInputValue);
-    if(findSameTerm && findSameTermWSpace) {
-      this.setState({ showResultImage: true, searchError: '' });
+    const notSameTerm = ((findSameTerm === -1) && (findSameTermWSpace === -1)) ? true : false;
+
+    if(notSameTerm) {
+      this.setState({ searchError: '', removeGifFlag: false });
       this.props.getGifData(this.state.gifInputValue, this.state.weirdnesLevel);
     } else {
-      this.setState({ searchError: 'You\'ve already used that term. Please search another term.', showResultImage: false });
-      this.props.onClearGifData();
+      console.log('same')
+      this.setState({ searchError: 'You\'ve already used that term. Please search another term.' });
+      // this.props.onClearGifData();
     }
   }
 
   onRemoveLikedGif = (e) => {
     const arrIndex = this.props.likedGifs.map((x) => { return x.url; }).indexOf(e.currentTarget.name);
-    this.props.onDeleteLikedGif(arrIndex)
+    this.props.onDeleteLikedGif(arrIndex);
+    this.setState({ removeGifFlag: true, searchError: '' });
   }
 
   likedGifImages = () => {
@@ -56,17 +66,18 @@ class NewPage extends React.Component {
   }
 
   resultImgMsg = () => {
-    if (this.props.likedGifs.length === 0) {
-      return (<h4 className="imgMsg">Enter a search term in the input box above to start the weirdness process</h4>);
+    if ((this.props.gifStatus === 'No Results') && this.state.madeSearch) {
+        return (<h4 className="imgMsg">No Results</h4>)
     } else if (this.props.likedGifs.length === 5) {
       return (<h4 className="imgMsg">Hooray, you've selected 5 GIFs! Press the <i>Calculate My Weirdness Score</i> to continue the weirdness process</h4>);
     } else if (!this.state.gifInputValue && this.props.likedGifs.length > 0) {
-      return (<h4 className="imgMsg">GIF added! Search for another GIF.</h4>);
+      return (<h4 className="imgMsg">GIF {this.state.removeGifFlag ? 'removed' : 'added'}! Search for another GIF.</h4>);
     }  else if (this.state.searchError) {
         return (<h4 className="imgMsg">Enter a search term in the input box above to continue the weirdness process</h4>)
-    } return null
+    } else if (!this.props.gifData.data) {
+      return (<h4 className="imgMsg">Enter a search term in the input box above to start the weirdness process</h4>);
+    } return null;
   }
-
   render() {
     const imageName = this.props.gifData.data &&  this.props.gifData.data.title;
     const imageURL = this.props.gifData.data && this.props.gifData.data.images.fixed_width.url;
@@ -74,7 +85,7 @@ class NewPage extends React.Component {
     const isLinkDisabled = this.props.likedGifs.length !== 5 ? 'noBtn' : null;
     const isBtnDisabled = !this.state.gifInputValue || this.props.likedGifs.length === 5 ? 'disabledLink' : null;
     return(
-      <div>
+      <div className="pgContianer">
         <div className="pgHeader"><h3>Weirdness Calculator</h3></div>
         <div className="calcContainer">
           <div className="calcDescrip">
@@ -114,14 +125,13 @@ class NewPage extends React.Component {
               onLikeClick={this.onLikeClick}
               sliderValue={this.state.weirdnesLevel}
               onSliderChange={this.onSliderChange}
-              hideResults={!this.state.showResultImage}
             />
-            {!this.state.showResultImage ? this.resultImgMsg() : null}
+            {!imageURL ? this.resultImgMsg() : null}
           </div>
         </div>
         <div className="likedGifContainer">
           <h4>YOUR LIKED GIFS</h4>
-          <h4 className="nullHeader">You must <i>like</i> {5 - this.props.likedGifs.length} more GIF to start the weirdness calculation.</h4>
+          {5 - this.props.likedGifs.length === 0 ? null : <h4 className="nullHeader">You must <i>like</i> {5 - this.props.likedGifs.length} more GIF to start the weirdness calculation.</h4>}
           {this.props.likedGifs.length > 0 ? this.likedGifImages() : null}
           <div className="calcBtnContainer">
             <Link to="/results" className={`${isLinkDisabled} gifBtn`}>Calculate My Weirdness Score</Link>
@@ -131,7 +141,6 @@ class NewPage extends React.Component {
     );
   }
 }
-
 NewPage.propTypes = {
   getGifData: PropTypes.func.isRequired,
   onAddLikedGif: PropTypes.func.isRequired,
@@ -139,12 +148,9 @@ NewPage.propTypes = {
   gifStatus: PropTypes.string.isRequired,
   gifErrorMessage: PropTypes.array,
 };
-
 NewPage.defaultProps = {
   gifErrorMessage: [],
 };
-
-
 function mapStateToProps(state) {
   return {
     gifData: state.NewPage.gifData,
@@ -153,7 +159,6 @@ function mapStateToProps(state) {
     likedGifs: state.NewPage.likedGifs,
   };
 }
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ getGifData, onAddLikedGif, onDeleteLikedGif, onClearGifData }, dispatch);
 }

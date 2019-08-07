@@ -8,20 +8,18 @@ import ResultsPage from './container/ResultsPage/index';
 const Routes = history => {
   return (
     <Router onUpdate={() => { window.scrollTo(0, 0); }} history={history}>
-      <div>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            component={NewPage}
-          />
-          <Route
-            exact
-            path="/results"
-            component={ResultsPage}
-          />
-        </Switch>
-      </div>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          component={NewPage}
+        />
+        <Route
+          exact
+          path="/results"
+          component={ResultsPage}
+        />
+      </Switch>
     </Router>
   );
 };

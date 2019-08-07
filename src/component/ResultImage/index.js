@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import './styles.css';
 
-const ResultImage = ({ name, url, onLikeClick, key, width, height, sliderValue, onSliderChange, hideResults }) => {
+const ResultImage = ({ name, url, onLikeClick, key, sliderValue, onSliderChange }) => {
   return (
     <div id={key} className="centerContent">
-      {!hideResults ?
+      {url ?
         <div>
           <h5 className="imageTitle">{name}</h5>
-          <img src={url} alt={name} width={width} height={height} />
+          <img src={url} alt={name} />
           <div className="likeBtnWrapper">
             <button className="gifBtn" onClick={onLikeClick} name={url}>
               Like
@@ -26,10 +26,17 @@ const ResultImage = ({ name, url, onLikeClick, key, width, height, sliderValue, 
 
 ResultImage.propTypes = {
   key: PropTypes.string,
+  name: PropTypes.string,
+  url: PropTypes.string,
+  sliderValue: PropTypes.PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onLikeClick: PropTypes.func.isRequired,
+  onSliderChange: PropTypes.func.isRequired,
 };
 
 ResultImage.defaultProps = {
-  key: ''
+  key: '',
+  name: '',
+  url: '',
 };
 
 export default ResultImage;
