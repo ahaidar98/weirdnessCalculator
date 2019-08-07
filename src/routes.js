@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 
 //import files here
-import NewPage from './container/NewPage/index';
+import WeirdnessCalculator from './container/WeirdnessCalculator/index';
 import ResultsPage from './container/ResultsPage/index';
 
 const Routes = history => {
@@ -12,7 +12,7 @@ const Routes = history => {
         <Route
           exact
           path="/"
-          component={NewPage}
+          component={WeirdnessCalculator}
         />
         <Route
           exact

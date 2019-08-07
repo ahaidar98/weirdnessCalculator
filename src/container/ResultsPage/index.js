@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import './styles.css';
 import LikedGifImages from '../../component/LikedGifImages/index';
 // New Page's actions
-import { onStartOver } from '../NewPage/actions';
+import { onStartOver } from '../WeirdnessCalculator/actions';
 
 class ResultsPage extends React.Component {
   constructor(props) {
@@ -56,7 +56,7 @@ ResultsPage.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    likedGifs: state.NewPage.likedGifs,
+    likedGifs: state.WeirdnessCalculator.likedGifs,
   };
 }
 

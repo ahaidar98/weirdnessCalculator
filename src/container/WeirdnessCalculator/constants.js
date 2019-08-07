@@ -1,0 +1,11 @@
+// Example of a constant
+export const FETCH_GIF_DATA = 'weirdnessCalculator/WeirdnessCalculator/FETCH_GIF_DATA';
+export const ON_DATA_FECTCH_START = 'weirdnessCalculator/WeirdnessCalculator/ON_DATA_FECTCH_START';
+export const ON_DATA_FECTCH_SUCESS = 'weirdnessCalculator/WeirdnessCalculator/ON_DATA_FECTCH_SUCESS';
+export const ON_DATA_FECTCH_FAILED = 'weirdnessCalculator/WeirdnessCalculator/ON_DATA_FECTCH_FAILED';
+export const ON_DATA_FECTCH_DONE = 'weirdnessCalculator/WeirdnessCalculator/ON_DATA_FECTCH_DONE';
+export const DELETE_LIKED_GIF = 'weirdnessCalculator/WeirdnessCalculator/DELETE_LIKED_GIF';
+export const ADD_LIKED_GIF = 'weirdnessCalculator/WeirdnessCalculator/ADD_LIKED_GIF';
+export const CLEAR_GIF_DATA = 'weirdnessCalculator/WeirdnessCalculator/CLEAR_GIF_DATA';
+export const ON_START_OVER = 'weirdnessCalculator/WeirdnessCalculator/ON_START_OVER';
+export const ON_DATA_FECTCH_NO_RESULTS = 'weirdnessCalculator/WeirdnessCalculator/ON_DATA_FECTCH_NO_RESULTS';

@@ -34,8 +34,8 @@ import {
 	  }
 	}
 
-	export function* NewPageSaga() {
+	export function* WeirdnessCalculatorSaga() {
 	  yield takeLatest(FETCH_GIF_DATA, getGifs);
 	}
 
-	export default NewPageSaga;
+	export default WeirdnessCalculatorSaga;

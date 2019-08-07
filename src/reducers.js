@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 // import files here
-import NewPageReducer from './container/NewPage/reducer';
+import WeirdnessCalculatorReducer from './container/WeirdnessCalculator/reducer';
 
 
 export default () => {
   return combineReducers({
-    NewPage: NewPageReducer,
+    WeirdnessCalculator: WeirdnessCalculatorReducer,
   });
 };

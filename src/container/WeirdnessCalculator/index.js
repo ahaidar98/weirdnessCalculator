@@ -8,9 +8,9 @@ import './styles.css';
 import { getGifData, onAddLikedGif, onDeleteLikedGif, onClearGifData } from './actions';
 import ResultImage from '../../component/ResultImage/index';
 import LikedGifImages from '../../component/LikedGifImages/index';
-import ErrorMessage from '../../component/errorMessage/index';
+import ErrorMessage from '../../component/ErrorMessage/index';
 
-class NewPage extends React.Component {
+class WeirdnessCalculator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -144,25 +144,25 @@ class NewPage extends React.Component {
     );
   }
 }
-NewPage.propTypes = {
+WeirdnessCalculator.propTypes = {
   getGifData: PropTypes.func.isRequired,
   onAddLikedGif: PropTypes.func.isRequired,
   onDeleteLikedGif: PropTypes.func.isRequired,
   gifStatus: PropTypes.string.isRequired,
   gifErrorMessage: PropTypes.array,
 };
-NewPage.defaultProps = {
+WeirdnessCalculator.defaultProps = {
   gifErrorMessage: [],
 };
 function mapStateToProps(state) {
   return {
-    gifData: state.NewPage.gifData,
-    gifStatus: state.NewPage.gifStatus,
-    gifErrorMessage: state.NewPage.gifErrorMessage,
-    likedGifs: state.NewPage.likedGifs,
+    gifData: state.WeirdnessCalculator.gifData,
+    gifStatus: state.WeirdnessCalculator.gifStatus,
+    gifErrorMessage: state.WeirdnessCalculator.gifErrorMessage,
+    likedGifs: state.WeirdnessCalculator.likedGifs,
   };
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ getGifData, onAddLikedGif, onDeleteLikedGif, onClearGifData }, dispatch);
 }
-export default connect(mapStateToProps, mapDispatchToProps)(NewPage);
+export default connect(mapStateToProps, mapDispatchToProps)(WeirdnessCalculator);
