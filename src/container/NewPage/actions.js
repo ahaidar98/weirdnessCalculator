@@ -7,7 +7,6 @@ import {
   ON_DATA_FECTCH_START,
   DELETE_LIKED_GIF,
   ADD_LIKED_GIF,
-  CLEAR_GIF_DATA,
   ON_START_OVER,
   ON_DATA_FECTCH_NO_RESULTS
 } from './constants';
@@ -75,12 +74,6 @@ export const onDeleteLikedGif = (index) => {
     type: DELETE_LIKED_GIF,
     index,
 
-  });
-};
-
-export const onClearGifData = () => {
-  return ({
-    type: CLEAR_GIF_DATA,
   });
 };
 

@@ -48,7 +48,6 @@ class NewPage extends React.Component {
     } else {
       console.log('same')
       this.setState({ searchError: 'You\'ve already used that term. Please search another term.' });
-      // this.props.onClearGifData();
     }
   }
 

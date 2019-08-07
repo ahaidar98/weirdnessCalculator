@@ -5,7 +5,6 @@ import {
   ON_DATA_FECTCH_START,
   DELETE_LIKED_GIF,
   ADD_LIKED_GIF,
-  CLEAR_GIF_DATA,
   ON_START_OVER,
   ON_DATA_FECTCH_NO_RESULTS,
 } from './constants';
@@ -40,9 +39,6 @@ export default (state = initialState, action) => {
 
     case DELETE_LIKED_GIF:
       return  { ...state, likedGifs: state.likedGifs.filter((item, index) => index !== action.index)};
-
-    case CLEAR_GIF_DATA:
-      return  { ...state, gifData: {} };
 
     case ON_START_OVER:
       return initialState;

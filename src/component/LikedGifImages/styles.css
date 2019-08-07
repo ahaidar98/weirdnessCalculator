@@ -1,6 +1,8 @@
-.likedGifTile {
+/*Styles are aplhabitical order*/
+
+.imgWrapper {
+  position: relative;
   display: inline-block;
-  margin: 20px;
 }
 
 .likedGifImg {
@@ -8,17 +10,13 @@
   height: 130px;
 }
 
-.text-align {
-  text-align: center;
+.likedGifTile {
+  display: inline-block;
+  margin: 20px;
 }
 
 .likedGifTile h5 {
   text-transform: capitalize;
-}
-
-.imgWrapper {
-  position: relative;
-  display: inline-block;
 }
 
 .removeBtn {
@@ -53,4 +51,8 @@
 
 .removeDiv:hover {
   opacity: .9 !important */;
+}
+
+.text-align {
+  text-align: center;
 }
