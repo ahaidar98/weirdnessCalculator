@@ -46,7 +46,6 @@ class NewPage extends React.Component {
       this.setState({ searchError: '', removeGifFlag: false });
       this.props.getGifData(this.state.gifInputValue, this.state.weirdnesLevel);
     } else {
-      console.log('same')
       this.setState({ searchError: 'You\'ve already used that term. Please search another term.' });
     }
   }
@@ -83,6 +82,7 @@ class NewPage extends React.Component {
     const imageId = this.props.gifData.data && this.props.gifData.data.id;
     const isLinkDisabled = this.props.likedGifs.length !== 5 ? 'noBtn' : null;
     const isBtnDisabled = !this.state.gifInputValue || this.props.likedGifs.length === 5 ? 'disabledLink' : null;
+
     return(
       <div className="pgContianer">
         <div className="pgHeader"><h3>Weirdness Calculator</h3></div>
@@ -117,14 +117,16 @@ class NewPage extends React.Component {
           </div>
           <div className="calcResults">
             <h4>YOUR RESULTS</h4>
-            <ResultImage
-              name={imageName}
-              url={imageURL}
-              key={imageId}
-              onLikeClick={this.onLikeClick}
-              sliderValue={this.state.weirdnesLevel}
-              onSliderChange={this.onSliderChange}
-            />
+            {this.props.gifStatus !== 'Loading' ?
+              <ResultImage
+                name={imageName}
+                url={imageURL}
+                key={imageId}
+                onLikeClick={this.onLikeClick}
+                sliderValue={this.state.weirdnesLevel}
+                onSliderChange={this.onSliderChange}
+              />
+            : <div className="loaderWrapper"><div className="loader" /></div>}
             {!imageURL ? this.resultImgMsg() : null}
           </div>
         </div>
