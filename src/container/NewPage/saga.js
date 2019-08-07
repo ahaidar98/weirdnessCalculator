@@ -29,18 +29,8 @@ import {
       }
 
 	  } catch (e) {
-      // Unhandled Error Message
-      const errorsObj = (e.response && e.response.data) ? e.response.data : {};
-      let errMsgs = [];
-
-      Object.keys(errorsObj).forEach((key) => {
-        errMsgs = errMsgs.concat(errorsObj[key].map(errMsg => {
-          if (!key || key === '') return errMsgs;
-          return `${key.replace(/_/g, ' ')} ${errMsgs}`;
-        }));
-      });
-      console.log('Error: ', errMsgs)
-	    yield put(onGifLoadFailed(errMsgs));
+      console.log('Error Occured', e);
+	    yield put(onGifLoadFailed());
 	  }
 	}
 

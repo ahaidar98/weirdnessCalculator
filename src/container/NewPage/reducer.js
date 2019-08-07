@@ -13,7 +13,6 @@ import {
 const initialState = {
 	gifData: {},
 	gifStatus: 'No Results',
-	gifErrorMessage: [],
   likedGifs: [],
 };
 
@@ -32,7 +31,7 @@ export default (state = initialState, action) => {
       return { ...state, gifStatus: 'No Results' };
 
     case ON_DATA_FECTCH_FAILED:
-      return { ...state, gifStatus: 'Failed', gifErrorMessage: [...action.payload] };
+      return { ...state, gifStatus: 'Failed' };
 
     case ADD_LIKED_GIF:
       const obj = Object.assign({}, state.likedGifs, { id: action.id, url: action.url, name: action.name, weirdness: action.weirdness, searchTerm: action.searchTerm });

@@ -52,11 +52,9 @@ export const onGifLoadNoResults = () => {
   });
 };
 
-export const onGifLoadFailed = (errMsg) => {
+export const onGifLoadFailed = () => {
   return ({
     type: ON_DATA_FECTCH_FAILED,
-    payload: errMsg,
-
   });
 };
 

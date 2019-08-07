@@ -8,6 +8,7 @@ import './styles.css';
 import { getGifData, onAddLikedGif, onDeleteLikedGif, onClearGifData } from './actions';
 import ResultImage from '../../component/ResultImage/index';
 import LikedGifImages from '../../component/LikedGifImages/index';
+import ErrorMessage from '../../component/errorMessage/index';
 
 class NewPage extends React.Component {
   constructor(props) {
@@ -88,6 +89,7 @@ class NewPage extends React.Component {
         <div className="pgHeader"><h3>Weirdness Calculator</h3></div>
         <div className="calcContainer">
           <div className="calcDescrip">
+            <ErrorMessage isError={this.props.gifStatus === 'Failed'} />
             <p>
               Find out how weird you are by selecting the GIFs that make you laugh.
               We'll show you the least weird ones to start, but you can move the slider
